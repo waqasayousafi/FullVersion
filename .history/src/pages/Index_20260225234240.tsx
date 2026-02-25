@@ -142,7 +142,9 @@ const Index = () => {
           </button>
         </div>
 
-        <button className={`w-full flex items-start justify-between pb-4`}>
+        <button
+          className={`w-full flex items-start justify-between pb-4 ${location.pathname === "/white" ? "bg-gray-200 rounded-lg p-3" : ""}`}
+        >
           <div className="flex items-center gap-3">
             <div className="text-left">
               <div className="flex items-center gap-2">

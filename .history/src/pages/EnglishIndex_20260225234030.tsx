@@ -18,13 +18,13 @@ import {
   Info,
 } from "lucide-react";
 import { UploadCover } from "@/components/UploadCover";
-import { MoreOptionsModal } from "@/components/MoreOptionsModal";
+import { EnglishMoreOptionsModal } from "@/components/EnglishMoreOptionsModal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Globe } from "lucide-react";
 
-const Index = () => {
+const EnglishIndex = () => {
   const [showMoreOptions, setShowMoreOptions] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -43,14 +43,14 @@ const Index = () => {
         <button
           className="p-1 -ml-1"
           onClick={() => {
-            if (location.pathname === "/white") {
-              navigate("/");
-            } else if (location.pathname === "/en/white") {
+            if (location.pathname === "/en/white") {
               navigate("/en");
-            } else if (location.pathname === "/en") {
-              navigate("/en/white");
-            } else {
+            } else if (location.pathname === "/white") {
+              navigate("/");
+            } else if (location.pathname === "/") {
               navigate("/white");
+            } else {
+              navigate("/en/white");
             }
           }}
         >
@@ -59,18 +59,18 @@ const Index = () => {
         <button
           className="px-4 py-2 text-base font-medium"
           onClick={() => {
-            if (location.pathname === "/") {
-              navigate("/en");
-            } else if (location.pathname === "/white") {
-              navigate("/en/white");
-            } else if (location.pathname === "/en") {
+            if (location.pathname === "/en") {
               navigate("/");
             } else if (location.pathname === "/en/white") {
               navigate("/white");
+            } else if (location.pathname === "/") {
+              navigate("/en");
+            } else if (location.pathname === "/white") {
+              navigate("/en/white");
             }
           }}
         >
-          Editar
+          Edit
         </button>
       </header>
 
@@ -79,7 +79,7 @@ const Index = () => {
 
         <div className=" border-b border-border">
           <Input
-            placeholder="Añade un título atractivo"
+            placeholder="Add a catchy title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="text-xs sm:text-xs md:text-sm placeholder:text-muted-foreground font-semibold border-0 px-0 focus-visible:ring-0"
@@ -93,7 +93,7 @@ const Index = () => {
           <Textarea
             id="description"
             name="description"
-            placeholder="Escribir una descripción larga puede ayudar a obtener 3 veces más visitas en promedio.  "
+            placeholder="Writing a long description can help get 3x more views on average."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="min-h-[80px] text-xs sm:text-xs md:text-sm placeholder:text-muted-foreground border-0 mb-20 px-0 resize-none focus-visible:ring-0"
@@ -102,31 +102,29 @@ const Index = () => {
 
         <div className="flex items-center gap-3 border-b border-border pb-4 mb-6">
           <button
-            className={`p-2 rounded-full transition-colors text-foreground/80 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
+            className={`p-2 rounded-full transition-colors text-foreground/80 ${location.pathname === "/en/white" ? "bg-gray-200" : "bg-secondary"}`}
           >
             <Hash className="w-5 h-5" />
           </button>
           <button
-            className={`p-2 rounded-full transition-colors text-foreground/80 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
+            className={`p-2 rounded-full transition-colors text-foreground/80 ${location.pathname === "/en/white" ? "bg-gray-200" : "bg-secondary"}`}
           >
             <AtSign className="w-5 h-5" />
           </button>
 
           <button
-            className={`flex items-center gap-0 py-1 rounded-full transition-colors ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"} text-secondary-foreground`}
+            className={`flex items-center gap-0 py-1 rounded-full transition-colors ${location.pathname === "/en/white" ? "bg-gray-200" : "bg-secondary"} text-secondary-foreground`}
           >
             <img
               src="/bulb2.png"
               alt="Lightbulb"
               className="-my-2.5 w-[50px] h-[50px] object-contain dark:brightness-0 dark:invert"
             />
-            <span className="text-xs font-medium pr-5">
-              Ideas de descripción
-            </span>
+            <span className="text-xs font-medium pr-5">Description ideas</span>
           </button>
 
           <button
-            className={`p-2 rounded-lg transition-colors text-foreground/80 ml-auto ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
+            className={`p-2 rounded-lg transition-colors text-foreground/80 ml-auto ${location.pathname === "/en/white" ? "bg-gray-200" : "bg-secondary"}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -142,13 +140,13 @@ const Index = () => {
           </button>
         </div>
 
-        <button className={`w-full flex items-start justify-between pb-4`}>
+        <button className="w-full flex items-start justify-between pb-4  ">
           <div className="flex items-center gap-3">
             <div className="text-left">
               <div className="flex items-center gap-2">
                 <MapPinned className="w-5 h-5" />
                 <div className="flex items-center gap-1">
-                  <div className="font-medium text-sm mb-2">Ubicación</div>
+                  <div className="font-medium text-sm mb-2">Location</div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14"
@@ -171,19 +169,13 @@ const Index = () => {
               </div>
 
               <div className="flex gap-2 mt-2">
-                <span
-                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
-                >
+                <span className="px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 bg-secondary">
                   Denver
                 </span>
-                <span
-                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
-                >
+                <span className="px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 bg-secondary">
                   McDonald's
                 </span>
-                <span
-                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
-                >
+                <span className="px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 bg-secondary">
                   Oklahoma
                 </span>
               </div>
@@ -197,7 +189,7 @@ const Index = () => {
           <div className="flex items-center gap-3">
             <Plus className="w-5 h-5" />
             <div className="relative">
-              <span className="font-medium text-sm">Añadir enlace</span>
+              <span className="font-medium text-sm">Add link</span>
               <span className="absolute -top-0.3 -right-2 w-2 h-2 bg-destructive rounded-full"></span>
             </div>
           </div>
@@ -219,7 +211,7 @@ const Index = () => {
               />
             </svg>
             <span className="font-medium text-sm">
-              Todos pueden ver esta publicación
+              Everyone can view this post
             </span>
           </div>
           {/* <div className="text-muted-foreground">›</div> */}
@@ -233,7 +225,7 @@ const Index = () => {
           <div className="flex items-center gap-3">
             <MoreHorizontal className="w-5 h-5 text-foreground" />
             <span className="font-medium text-sm text-foreground">
-              Más opciones
+              More options
             </span>
           </div>
           {/* <div className="text-muted-foreground">›</div> */}
@@ -259,7 +251,7 @@ const Index = () => {
                   clip-rule="evenodd"
                 />
               </svg>
-              <span className="font-medium text-sm">Compartir con</span>
+              <span className="font-medium text-sm">Share to</span>
             </div>
             <div className="flex gap-3">
               <button className="w-12 h-12 rounded-full flex items-center justify-center text-foreground/80 bg-secondary">
@@ -293,14 +285,14 @@ const Index = () => {
       <div className="fixed bottom-0 left-0 right-0 px-4 py-3 flex gap-3">
         <Button
           variant="secondary"
-          className={`flex-1 h-12 text-sm font-bold flex items-center justify-center ${location.pathname === "/white" ? "bg-gray-200 hover:bg-gray-300" : ""}`}
+          className={`flex-1 h-12 text-sm font-bold flex items-center justify-center ${location.pathname === "/en/white" ? "bg-gray-200 hover:bg-gray-300" : ""}`}
         >
           <img
             src="/draft.png"
             alt="Draft"
-            className={`w-5 h-5 -mr-1 ${location.pathname === "/white" ? "" : "brightness-0 invert"}`}
+            className={`w-5 h-5 -mr-1 ${location.pathname === "/en/white" ? "" : "brightness-0 invert"}`}
           />
-          Borradores
+          Drafts
         </Button>
         <Button className="flex-1 h-12 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-normal flex items-center justify-center">
           <img
@@ -308,11 +300,11 @@ const Index = () => {
             alt="PostArrow"
             className="w-9 h-9 -ml-2 -mr-3"
           />
-          Publicar
+          Post
         </Button>
       </div>
 
-      <MoreOptionsModal
+      <EnglishMoreOptionsModal
         isOpen={showMoreOptions}
         onClose={() => setShowMoreOptions(false)}
       />
@@ -320,4 +312,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default EnglishIndex;

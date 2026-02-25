@@ -112,9 +112,7 @@ const Index = () => {
             <AtSign className="w-5 h-5" />
           </button>
 
-          <button
-            className={`flex items-center gap-0 py-1 rounded-full transition-colors ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"} text-secondary-foreground`}
-          >
+          <button className="flex items-center gap-0 py-1 rounded-full transition-colors bg-secondary text-secondary-foreground">
             <img
               src="/bulb2.png"
               alt="Lightbulb"
@@ -125,9 +123,7 @@ const Index = () => {
             </span>
           </button>
 
-          <button
-            className={`p-2 rounded-lg transition-colors text-foreground/80 ml-auto ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
-          >
+          <button className="p-2 rounded-lg transition-colors text-foreground/80 ml-auto bg-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -142,7 +138,7 @@ const Index = () => {
           </button>
         </div>
 
-        <button className={`w-full flex items-start justify-between pb-4`}>
+        <button className="w-full flex items-start justify-between pb-4  ">
           <div className="flex items-center gap-3">
             <div className="text-left">
               <div className="flex items-center gap-2">
@@ -171,19 +167,13 @@ const Index = () => {
               </div>
 
               <div className="flex gap-2 mt-2">
-                <span
-                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
-                >
+                <span className="px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 bg-secondary">
                   Denver
                 </span>
-                <span
-                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
-                >
+                <span className="px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 bg-secondary">
                   McDonald's
                 </span>
-                <span
-                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
-                >
+                <span className="px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 bg-secondary">
                   Oklahoma
                 </span>
               </div>
