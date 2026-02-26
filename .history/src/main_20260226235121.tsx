@@ -11,18 +11,11 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("/sw.js", { scope: "/" })
       .then((registration) => {
-        console.log("✅ Service Worker registered successfully:", registration);
+        console.log("Service Worker registered successfully:", registration);
 
         // Check if the service worker is activated
         if (registration.active) {
-          console.log("✅ Service Worker is active");
-        } else if (registration.installing) {
-          console.log("⏳ Service Worker is installing...");
-          registration.installing.addEventListener("statechange", () => {
-            if (registration.installing?.state === "activated") {
-              console.log("✅ Service Worker activated");
-            }
-          });
+          console.log("Service Worker is active");
         }
 
         // Check for updates
@@ -35,57 +28,70 @@ if ("serviceWorker" in navigator) {
                 navigator.serviceWorker.controller
               ) {
                 console.log("New content is available; please refresh.");
+              } else if (newWorker.state === "activated") {
+                console.log("Service Worker activated");
               }
             });
           }
         });
       })
       .catch((error) => {
-        console.log("❌ Service Worker registration failed:", error);
+        console.log("Service Worker registration failed:", error);
 
         // Check if it's a MIME type error and provide alternative
         if (error.message.includes("MIME type")) {
           console.log(
-            "⚠️ MIME type error detected. PWA may still work for installation.",
+            "MIME type error detected. This might be a server configuration issue.",
           );
-        }
+          console.log(
+            "The PWA may still work for installation, but offline features will be limited.",
+          );
 
-        // Continue with PWA installation prompt even without service worker
-        console.log("Continuing with PWA installation check...");
-        checkPWAInstallation();
+          // Continue with PWA installation prompt even without service worker
+          console.log(
+            "Continuing with PWA installation without service worker...",
+          );
+          checkPWAInstallation();
+        } else {
+          console.log("Trying alternative registration...");
+
+          // Try alternative registration without scope
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+              console.log(
+                "Alternative Service Worker registration successful:",
+                registration,
+              );
+              checkPWAInstallation();
+            })
+            .catch((altError) => {
+              console.log(
+                "Alternative Service Worker registration also failed:",
+                altError,
+              );
+              console.log("Continuing without service worker...");
+              checkPWAInstallation();
+            });
+        }
       });
   });
 }
 
 // Function to check PWA installation eligibility
 function checkPWAInstallation() {
-  console.log("🔍 Checking PWA installation eligibility...");
-  console.log(
-    "- Service Worker API:",
-    "serviceWorker" in navigator ? "✅" : "❌",
-  );
-  console.log(
-    "- Manifest:",
-    document.querySelector('link[rel="manifest"]') ? "✅" : "❌",
-  );
+  console.log("Checking PWA installation eligibility...");
+  console.log("- Service Worker API:", "serviceWorker" in navigator);
+  console.log("- Manifest:", !!document.querySelector('link[rel="manifest"]'));
   console.log(
     "- HTTPS:",
-    location.protocol === "https:" || location.hostname === "localhost"
-      ? "✅"
-      : "❌",
+    location.protocol === "https:" || location.hostname === "localhost",
   );
   console.log("- User Agent:", navigator.userAgent);
 
-  // Check if we're in standalone mode already
-  const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
-  console.log(
-    "- Standalone Mode:",
-    isStandalone ? "✅ Already installed" : "❌ Not installed",
-  );
-
   // Simulate user engagement to trigger install prompt
   setTimeout(() => {
-    console.log("🎯 Simulating user engagement for install prompt...");
+    console.log("Simulating user engagement for install prompt...");
     window.dispatchEvent(new Event("scroll"));
     window.dispatchEvent(new Event("click"));
   }, 1000);
