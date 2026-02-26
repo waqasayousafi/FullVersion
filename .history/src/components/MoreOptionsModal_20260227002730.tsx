@@ -39,7 +39,7 @@ export const MoreOptionsModal = ({
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-end">
       <div className="bg-card w-full rounded-t-3xl max-h-[71vh] overflow-x-hidden overflow-y-auto pb-8">
-        <div className="sticky top-0 bg-card border-b border-border px-4 pb-3 [padding-top:max(0.75rem,env(safe-area-inset-top))] flex items-center justify-center overflow-hidden z-10">
+        <div className="sticky top-0 bg-card border-b border-border px-4 pb-3 [padding-top:max(0.75rem,env(safe-area-inset-top))] flex items-center justify-center">
           <h2 className="text-xl font-bold text-black dark:text-white">
             Más opciones
           </h2>

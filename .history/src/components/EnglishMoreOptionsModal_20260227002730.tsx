@@ -16,15 +16,15 @@ import {
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 
-interface MoreOptionsModalProps {
+interface EnglishMoreOptionsModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const MoreOptionsModal = ({
+export const EnglishMoreOptionsModal = ({
   isOpen,
   onClose,
-}: MoreOptionsModalProps) => {
+}: EnglishMoreOptionsModalProps) => {
   const [aiGenerated, setAiGenerated] = useState(false);
   const [identifyProducts, setIdentifyProducts] = useState(true);
   const [saveToDevice, setSaveToDevice] = useState(false);
@@ -39,9 +39,9 @@ export const MoreOptionsModal = ({
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-end">
       <div className="bg-card w-full rounded-t-3xl max-h-[71vh] overflow-x-hidden overflow-y-auto pb-8">
-        <div className="sticky top-0 bg-card border-b border-border px-4 pb-3 [padding-top:max(0.75rem,env(safe-area-inset-top))] flex items-center justify-center overflow-hidden z-10">
+        <div className="sticky top-0 bg-card border-b border-border px-4 pb-3 [padding-top:max(0.75rem,env(safe-area-inset-top))] flex items-center justify-center">
           <h2 className="text-xl font-bold text-black dark:text-white">
-            Más opciones
+            More options
           </h2>
           <button onClick={onClose} className="p-1 absolute right-4">
             <X className="w-6 h-6" />
@@ -58,9 +58,7 @@ export const MoreOptionsModal = ({
               <div className="flex items-center justify-between py-1">
                 <div className="flex items-center gap-3">
                   <MessageSquare className="w-5 h-5" />
-                  <span className="font-medium text-sm">
-                    Permitir comentarios
-                  </span>
+                  <span className="font-medium text-sm">Allow comments</span>
                 </div>
                 <Switch
                   checked={allowComments}
@@ -76,10 +74,10 @@ export const MoreOptionsModal = ({
                   />
                   <div>
                     <div className="font-medium text-sm">
-                      Permitir reutilización del contenido
+                      Allow reuse of content
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      Dueto, Stitch, pegatinas y añadir a la historia
+                      Duet, Stitch, stickers, and add to Story
                     </p>
                   </div>
                 </div>
@@ -91,7 +89,7 @@ export const MoreOptionsModal = ({
           {/* Advanced Settings */}
           <div>
             <h3 className="text-xs font-semibold text-muted-foreground mb-1">
-              Configuraciones avanzadas
+              Advanced settings
             </h3>
 
             <div className="space-y-4">
@@ -103,7 +101,7 @@ export const MoreOptionsModal = ({
                     className="w-9 h-9 -ml-2 dark:brightness-0 dark:invert"
                   />
                   <span className="font-medium text-sm">
-                    Divulgación de contenido y anuncios
+                    Content disclosure and ads
                   </span>
                 </div>
                 <ChevronRight className="w-5 h-5 text-muted-foreground" />
@@ -115,21 +113,20 @@ export const MoreOptionsModal = ({
                   <div>
                     <div className="flex -ml-1 items-center gap-2">
                       <div className="font-medium text-sm">
-                        Mira TikToks y gana
+                        Watch TikToks & Earn
                       </div>
                     </div>
                     <p className="text-xs -ml-1 text-muted-foreground mt-1">
-                      Habilite esta función para recibir pagos mientras mira
-                      videos
+                      Enable this feature to get paid while watching videos
                     </p>
                     {watchAndEarn && (
                       <p className="text-xs mt-0 flex items-center gap-2 flex-nowrap -ml-1">
                         {/*  Balance: $526.57 updates*/}
                         <span className="text-[12px] font-medium text-tiktok-cyan whitespace-nowrap">
-                          USD 5302.11
+                          USD 5367
                         </span>
                         <span className="text-toggle-active font-medium text-tiktok-cyan whitespace-nowrap">
-                          Vídeos vistos: 3921
+                          Videos Watched: 3143
                         </span>
                       </p> //comment
                     )}
@@ -164,12 +161,11 @@ export const MoreOptionsModal = ({
                   </svg>
                   <div>
                     <div className="font-medium text-sm">
-                      Agregar texto alternativo
+                      Add alternative text
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      Proporcione una breve descripción de una imagen para los
-                      espectadores que utilizan tecnología de lector de
-                      pantalla.
+                      Provide a brief description of an image for viewers using
+                      screen reader technology.
                     </p>
                   </div>
                 </div>
@@ -194,14 +190,14 @@ export const MoreOptionsModal = ({
                   </svg>
                   <div>
                     <div className="font-medium text-sm">
-                      Contenido generado por IA
+                      AI-generated content
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      Agregue esta etiqueta para informar a los espectadores que
-                      su contenido fue generado o editado con IA.{" "}
+                      Add this label to tell viewers your content was generated
+                      or edited with AI.{" "}
                       {/* <span className="font-semibold">Learn more</span> */}
                       <span className=" cursor-pointer font-medium text-xs text-black dark:text-white whitespace-nowrap">
-                        Más información
+                        Learn more
                       </span>
                     </p>
                   </div>
@@ -235,15 +231,14 @@ export const MoreOptionsModal = ({
                   </svg>
                   <div>
                     <div className="font-medium text-sm">
-                      Identificar productos similares
+                      Identify similar products
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      Permite que se identifiquen artículos similares a los de
-                      tus videos para que los usuarios puedan comprarlos en la
-                      Tienda de TikTok.{" "}
+                      Allow items similar to the ones in your videos to be
+                      identified so users can shop for them in TikTok Shop.{" "}
                       {/* <span className="font-semibold">Learn more</span> */}
                       <span className=" cursor-pointer font-medium text-xs text-black dark:text-white whitespace-nowrap">
-                        Más información
+                        Learn more
                       </span>
                     </p>
                   </div>
@@ -282,13 +277,10 @@ export const MoreOptionsModal = ({
                     />
                   </svg>
                   <div>
-                    <div className="font-medium text-sm">
-                      Guardar en el dispositivo
-                    </div>
+                    <div className="font-medium text-sm">Save to device</div>
                     <p className="text-xs text-muted-foreground">
-                      Tu publicación se guardará en el dispositivo, a menos que
-                      se encuentre una violación de las Directrices de la
-                      Comunidad.
+                      Your post will be saved to device, unless a violation of
+                      Community Guideline is found.
                     </p>
                   </div>
                 </div>
@@ -317,10 +309,10 @@ export const MoreOptionsModal = ({
                   </svg>
                   <div>
                     <div className="font-medium text-sm">
-                      Guardar publicaciones con marca de agua
+                      Save posts with watermark
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      Esto solo afecta a videos o fotos publicadas por ti.
+                      This only affects videos or photos posted by you.
                     </p>
                   </div>
                 </div>
@@ -351,7 +343,7 @@ export const MoreOptionsModal = ({
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
                       <span className="font-medium text-sm">
-                        Controles de audiencia
+                        Audience controls
                       </span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -367,7 +359,7 @@ export const MoreOptionsModal = ({
                       </svg>
                     </div>
                     <p className="text-xs sm:text-xs text-muted-foreground">
-                      Este video está limitado a personas mayores de 18 años.
+                      This video is limited to those aged 18 years and older.
                     </p>
                   </div>
                 </div>
