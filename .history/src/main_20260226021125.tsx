@@ -2,35 +2,6 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-// Manual Service Worker Registration
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then((registration) => {
-        console.log("Service Worker registered successfully:", registration);
-
-        // Check for updates
-        registration.addEventListener("updatefound", () => {
-          const newWorker = registration.installing;
-          if (newWorker) {
-            newWorker.addEventListener("statechange", () => {
-              if (
-                newWorker.state === "installed" &&
-                navigator.serviceWorker.controller
-              ) {
-                console.log("New content is available; please refresh.");
-              }
-            });
-          }
-        });
-      })
-      .catch((error) => {
-        console.log("Service Worker registration failed:", error);
-      });
-  });
-}
-
 // PWA Installation Prompt
 let deferredPrompt: any;
 
@@ -78,10 +49,6 @@ window.addEventListener("DOMContentLoaded", () => {
     window.matchMedia("(display-mode: standalone)").matches
       ? "standalone"
       : "browser",
-  );
-  console.log(
-    "PWA Check - HTTPS:",
-    location.protocol === "https:" || location.hostname === "localhost",
   );
 
   if (deferredPrompt) {

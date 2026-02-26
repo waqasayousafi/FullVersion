@@ -18,13 +18,13 @@ import {
   Info,
 } from "lucide-react";
 import { UploadCover } from "@/components/UploadCover";
-import { EnglishMoreOptionsModal } from "@/components/EnglishMoreOptionsModal";
+import { MoreOptionsModal } from "@/components/MoreOptionsModal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Globe } from "lucide-react";
 
-const EnglishIndex = () => {
+const Index = () => {
   const [showMoreOptions, setShowMoreOptions] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -43,14 +43,14 @@ const EnglishIndex = () => {
         <button
           className="p-1 -ml-1"
           onClick={() => {
-            if (location.pathname === "/en/white") {
-              navigate("/en");
-            } else if (location.pathname === "/white") {
+            if (location.pathname === "/white") {
               navigate("/");
-            } else if (location.pathname === "/") {
-              navigate("/white");
-            } else {
+            } else if (location.pathname === "/en/white") {
+              navigate("/en");
+            } else if (location.pathname === "/en") {
               navigate("/en/white");
+            } else {
+              navigate("/white");
             }
           }}
         >
@@ -59,18 +59,18 @@ const EnglishIndex = () => {
         <button
           className="px-4 py-2 text-base font-medium"
           onClick={() => {
-            if (location.pathname === "/en") {
-              navigate("/");
-            } else if (location.pathname === "/en/white") {
-              navigate("/white");
-            } else if (location.pathname === "/") {
+            if (location.pathname === "/") {
               navigate("/en");
             } else if (location.pathname === "/white") {
               navigate("/en/white");
+            } else if (location.pathname === "/en") {
+              navigate("/");
+            } else if (location.pathname === "/en/white") {
+              navigate("/white");
             }
           }}
         >
-          Edit
+          Editar
         </button>
       </header>
 
@@ -79,7 +79,7 @@ const EnglishIndex = () => {
 
         <div className=" border-b border-border">
           <Input
-            placeholder="Add a catchy title"
+            placeholder="Añade un título atractivo"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="text-xs sm:text-xs md:text-sm placeholder:text-muted-foreground font-semibold border-0 px-0 focus-visible:ring-0"
@@ -93,7 +93,7 @@ const EnglishIndex = () => {
           <Textarea
             id="description"
             name="description"
-            placeholder="Writing a long description can help get 3x more views on average."
+            placeholder="Escribir una descripción larga puede ayudar a obtener 3 veces más visitas en promedio.  "
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="min-h-[80px] text-xs sm:text-xs md:text-sm placeholder:text-muted-foreground border-0 mb-20 px-0 resize-none focus-visible:ring-0"
@@ -102,29 +102,31 @@ const EnglishIndex = () => {
 
         <div className="flex items-center gap-3 border-b border-border pb-4 mb-6">
           <button
-            className={`p-2 rounded-full transition-colors text-foreground/80 ${location.pathname === "/en/white" ? "bg-gray-200" : "bg-secondary"}`}
+            className={`p-2 rounded-full transition-colors text-foreground/80 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
           >
             <Hash className="w-5 h-5" />
           </button>
           <button
-            className={`p-2 rounded-full transition-colors text-foreground/80 ${location.pathname === "/en/white" ? "bg-gray-200" : "bg-secondary"}`}
+            className={`p-2 rounded-full transition-colors text-foreground/80 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
           >
             <AtSign className="w-5 h-5" />
           </button>
 
           <button
-            className={`flex items-center gap-0 py-1 rounded-full transition-colors ${location.pathname === "/en/white" ? "bg-gray-200" : "bg-secondary"} text-secondary-foreground`}
+            className={`flex items-center gap-0 py-1 rounded-full transition-colors ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"} text-secondary-foreground`}
           >
             <img
               src="/bulb2.png"
               alt="Lightbulb"
               className="-my-2.5 w-[50px] h-[50px] object-contain dark:brightness-0 dark:invert"
             />
-            <span className="text-xs font-medium pr-5">Description ideas</span>
+            <span className="text-xs font-medium pr-5">
+              Ideas de descripción
+            </span>
           </button>
 
           <button
-            className={`p-2 rounded-lg transition-colors text-foreground/80 ml-auto ${location.pathname === "/en/white" ? "bg-gray-200" : "bg-secondary"}`}
+            className={`p-2 rounded-lg transition-colors text-foreground/80 ml-auto ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +148,7 @@ const EnglishIndex = () => {
               <div className="flex items-center gap-2">
                 <MapPinned className="w-5 h-5" />
                 <div className="flex items-center gap-1">
-                  <div className="font-medium text-sm mb-2">Location</div>
+                  <div className="font-medium text-sm mb-2">Ubicación</div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14"
@@ -170,17 +172,17 @@ const EnglishIndex = () => {
 
               <div className="flex gap-2 mt-2">
                 <span
-                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/en/white" ? "bg-gray-200" : "bg-secondary"}`}
+                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
                 >
                   Denver
                 </span>
                 <span
-                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/en/white" ? "bg-gray-200" : "bg-secondary"}`}
+                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
                 >
                   McDonald's
                 </span>
                 <span
-                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/en/white" ? "bg-gray-200" : "bg-secondary"}`}
+                  className={`px-3 py-1 rounded-lg text-xs font-medium text-foreground/70 ${location.pathname === "/white" ? "bg-gray-200" : "bg-secondary"}`}
                 >
                   Oklahoma
                 </span>
@@ -195,7 +197,7 @@ const EnglishIndex = () => {
           <div className="flex items-center gap-3">
             <Plus className="w-5 h-5" />
             <div className="relative">
-              <span className="font-medium text-sm">Add link</span>
+              <span className="font-medium text-sm">Añadir enlace</span>
               <span className="absolute -top-0.3 -right-2 w-2 h-2 bg-destructive rounded-full"></span>
             </div>
           </div>
@@ -217,7 +219,7 @@ const EnglishIndex = () => {
               />
             </svg>
             <span className="font-medium text-sm">
-              Everyone can view this post
+              Todos pueden ver esta publicación
             </span>
           </div>
           {/* <div className="text-muted-foreground">›</div> */}
@@ -231,7 +233,7 @@ const EnglishIndex = () => {
           <div className="flex items-center gap-3">
             <MoreHorizontal className="w-5 h-5 text-foreground" />
             <span className="font-medium text-sm text-foreground">
-              More options
+              Más opciones
             </span>
           </div>
           {/* <div className="text-muted-foreground">›</div> */}
@@ -254,10 +256,10 @@ const EnglishIndex = () => {
                   fill="currentColor"
                   fillRule="evenodd"
                   d="M12.411 7.46c-.164-.905.878-1.533 1.602-.965l5.463 4.293a1 1 0 0 1 0 1.572l-5.463 4.293c-.724.568-1.766-.06-1.602-.966l.27-1.48c-2.154-.426-3.655-.063-4.704.558c-1.134.673-1.802 1.687-2.18 2.502l-.452-.209l.452.21c-.185.4-.609.476-.861.45c-.249-.028-.686-.203-.73-.69c-.333-3.713.716-5.99 2.587-7.202c1.637-1.06 3.79-1.222 5.868-.993zm6.447 4.114l-5.463-4.292l.372 2.046a.5.5 0 0 1-.566.584c-2.208-.333-4.359-.221-5.865.754c-1.365.884-2.324 2.564-2.176 5.654c.462-.823 1.188-1.751 2.307-2.415c1.38-.818 3.295-1.196 5.908-.569a.5.5 0 0 1 .376.576l-.356 1.954z"
-                  clipRule="evenodd"
+                  clip-rule="evenodd"
                 />
               </svg>
-              <span className="font-medium text-sm">Share to</span>
+              <span className="font-medium text-sm">Compartir con</span>
             </div>
             <div className="flex gap-3">
               <button className="w-12 h-12 rounded-full flex items-center justify-center text-foreground/80 bg-secondary">
@@ -291,14 +293,14 @@ const EnglishIndex = () => {
       <div className="fixed bottom-0 left-0 right-0 px-4 py-3 flex gap-3">
         <Button
           variant="secondary"
-          className={`flex-1 h-12 text-sm font-bold flex items-center justify-center ${location.pathname === "/en/white" ? "bg-gray-200 hover:bg-gray-300" : ""}`}
+          className={`flex-1 h-12 text-sm font-bold flex items-center justify-center ${location.pathname === "/white" ? "bg-gray-200 hover:bg-gray-300" : ""}`}
         >
           <img
             src="/draft.png"
             alt="Draft"
-            className={`w-5 h-5 -mr-1 ${location.pathname === "/en/white" ? "" : "brightness-0 invert"}`}
+            className={`w-5 h-5 -mr-1 ${location.pathname === "/white" ? "" : "brightness-0 invert"}`}
           />
-          Drafts
+          Borradores
         </Button>
         <Button className="flex-1 h-12 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-normal flex items-center justify-center">
           <img
@@ -306,11 +308,11 @@ const EnglishIndex = () => {
             alt="PostArrow"
             className="w-9 h-9 -ml-2 -mr-3"
           />
-          Post
+          Publicar
         </Button>
       </div>
 
-      <EnglishMoreOptionsModal
+      <MoreOptionsModal
         isOpen={showMoreOptions}
         onClose={() => setShowMoreOptions(false)}
       />
@@ -318,4 +320,4 @@ const EnglishIndex = () => {
   );
 };
 
-export default EnglishIndex;
+export default Index;
