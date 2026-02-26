@@ -5,9 +5,6 @@ import "./index.css";
 // Manual Service Worker Registration
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    console.log("Attempting to register service worker...");
-
-    // First try with explicit scope
     navigator.serviceWorker
       .register("/sw.js", { scope: "/" })
       .then((registration) => {
@@ -37,64 +34,25 @@ if ("serviceWorker" in navigator) {
       })
       .catch((error) => {
         console.log("Service Worker registration failed:", error);
+        console.log("Trying alternative registration...");
 
-        // Check if it's a MIME type error and provide alternative
-        if (error.message.includes("MIME type")) {
-          console.log(
-            "MIME type error detected. This might be a server configuration issue.",
-          );
-          console.log(
-            "The PWA may still work for installation, but offline features will be limited.",
-          );
-
-          // Continue with PWA installation prompt even without service worker
-          console.log(
-            "Continuing with PWA installation without service worker...",
-          );
-          checkPWAInstallation();
-        } else {
-          console.log("Trying alternative registration...");
-
-          // Try alternative registration without scope
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((registration) => {
-              console.log(
-                "Alternative Service Worker registration successful:",
-                registration,
-              );
-              checkPWAInstallation();
-            })
-            .catch((altError) => {
-              console.log(
-                "Alternative Service Worker registration also failed:",
-                altError,
-              );
-              console.log("Continuing without service worker...");
-              checkPWAInstallation();
-            });
-        }
+        // Try alternative registration
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then((registration) => {
+            console.log(
+              "Alternative Service Worker registration successful:",
+              registration,
+            );
+          })
+          .catch((altError) => {
+            console.log(
+              "Alternative Service Worker registration also failed:",
+              altError,
+            );
+          });
       });
   });
-}
-
-// Function to check PWA installation eligibility
-function checkPWAInstallation() {
-  console.log("Checking PWA installation eligibility...");
-  console.log("- Service Worker API:", "serviceWorker" in navigator);
-  console.log("- Manifest:", !!document.querySelector('link[rel="manifest"]'));
-  console.log(
-    "- HTTPS:",
-    location.protocol === "https:" || location.hostname === "localhost",
-  );
-  console.log("- User Agent:", navigator.userAgent);
-
-  // Simulate user engagement to trigger install prompt
-  setTimeout(() => {
-    console.log("Simulating user engagement for install prompt...");
-    window.dispatchEvent(new Event("scroll"));
-    window.dispatchEvent(new Event("click"));
-  }, 1000);
 }
 
 // PWA Installation Prompt
